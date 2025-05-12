@@ -6,9 +6,22 @@ import {
   increaseCounter,
   decreaseCounter,
 } from "./action/actions"
-
+import store from './redux/store'
 
 function App(props) {
+
+  // event handler
+  const handleIncrease = () => {
+    // dispatch actions
+    props.increaseCounter()
+
+    // fire actions: dispatch = fire
+    // store.dispatch({
+    //   type: "abc",
+    //   payload: { "nam": "Nguyen" }
+    // })
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -16,10 +29,10 @@ function App(props) {
         <h1>React Redux</h1>
         <div>Count: {props.count}</div>
 
-      <button onClick={() => props.increaseCounter()}>Increase Count</button>
+        <button onClick={() => handleIncrease()}>Increase Count</button>
 
-      <button onClick={() => props.decreaseCounter()}>Decrease Count</button>
-      
+        <button onClick={() => props.decreaseCounter()}>Decrease Count</button>
+
       </header>
     </div>
   );
