@@ -7,7 +7,9 @@ import {
 
 const INITIAL_STATE = {
 
-  ListUsers: []
+  ListUsers: [],
+  isLoading: false,
+  isError: false
 };
 
 const UserReducer = (state = INITIAL_STATE, action) => {
@@ -19,20 +21,27 @@ const UserReducer = (state = INITIAL_STATE, action) => {
 
       return {
 
-        ...state
+        ...state,
+        isLoading: true,
+        isError: false
       };
 
     case FETCH_USER_SUCCESS:
       console.log("FETCH_USER_SUCCESS: ", action);
       return {
-        ...state, ListUsers: action.dataUsers
+        ...state, 
+        ListUsers: action.dataUsers,
+        isLoading: false,
+        isError: false
 
       };
 
     case FETCH_USER_ERROR:
       console.log("FETCH_USER_ERROR", action);
       return {
-        ...state
+        ...state,
+        isLoading: false,
+        isError: true
 
       };
 
