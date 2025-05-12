@@ -13,7 +13,7 @@ function App(props) {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>Hello world with React and Hoi Dan IT!</h1>
+        <h1>React Redux</h1>
         <div>Count: {props.count}</div>
 
       <button onClick={() => props.increaseCounter()}>Increase Count</button>
