@@ -11,7 +11,8 @@ import { INCREMENT, DECREMENT } from '../action/types';
         switch (action.type) {
 
             case INCREMENT:
-
+              console.log("I'm running INCREMENT");
+              
                return {
 
                  ...state, count: state.count + 1,
@@ -19,7 +20,7 @@ import { INCREMENT, DECREMENT } from '../action/types';
                };
 
             case DECREMENT:
-
+              console.log("I'm running DECREMENT");
                return {
                   ...state, count: state.count - 1,
 
