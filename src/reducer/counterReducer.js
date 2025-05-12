@@ -1,35 +1,36 @@
 import { INCREMENT, DECREMENT } from '../action/types';
 
 
-    const INITIAL_STATE = {
+const INITIAL_STATE = {
 
-        count: 0,
-    };
+  count: 0,
+  name: "An"
+};
 
-    const reducer = (state = INITIAL_STATE, action) => {
+const reducer = (state = INITIAL_STATE, action) => {
 
-        switch (action.type) {
+  switch (action.type) {
 
-            case INCREMENT:
-              console.log("I'm running INCREMENT");
-              
-               return {
+    case INCREMENT:
+      console.log("I'm running INCREMENT");
 
-                 ...state, count: state.count + 1,
+      return {
 
-               };
+        ...state, count: state.count + 1,
 
-            case DECREMENT:
-              console.log("I'm running DECREMENT");
-               return {
-                  ...state, count: state.count - 1,
+      };
 
-               };
+    case DECREMENT:
+      console.log("I'm running DECREMENT");
+      return {
+        ...state, count: state.count - 1,
 
-             default: return state;
+      };
 
-        }
+    default: return state;
 
-    };
+  }
 
-    export default reducer;
+};
+
+export default reducer;
