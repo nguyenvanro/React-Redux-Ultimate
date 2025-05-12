@@ -26,7 +26,7 @@ function App(props) {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>React Redux</h1>
+        <h1>React Redux: {props.abc}</h1>
         <div>Count: {props.count}</div>
 
         <button onClick={() => handleIncrease()}>Increase Count</button>
@@ -38,12 +38,15 @@ function App(props) {
   );
 }
 
+// map state (redux store) + props react
 const mapStateToProps = state => {
   return {
     count: state.counter.count,
+    abc: state.counter.name
   }
 }
 
+// map dispatch (redux) to props react
 const mapDispatchToProps = dispatch => {
   return {
     increaseCounter: () => dispatch(increaseCounter()),
@@ -52,5 +55,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
+// higher order component
 export default connect(mapStateToProps, mapDispatchToProps)(App)
 
