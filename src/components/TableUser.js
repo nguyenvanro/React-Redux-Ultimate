@@ -12,18 +12,10 @@ const TableUser = (props) => {
 
     const dispath = useDispatch();
     const ListUsers = useSelector((state) => state.user.ListUsers);
-    console.log('listUsers: ', ListUsers);
-
-    // const fetchAllUser = async () => {
-    //     const res = await axios.get("http://localhost:8080/users/all");
-    //     const data = res && res.data ? res.data : []
-    //     console.log("data: ", data);
-    //     setListUsers(data)
-
-    // }
+    const isLoading = useSelector((state) => state.user.isLoading);
+    const isError = useSelector((state) => state.user.isError);
 
     useEffect(() => {
-        // fetchAllUser();
         dispath(fetchAllUsers())
     }, [])
 
@@ -45,27 +37,41 @@ const TableUser = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {ListUsers && ListUsers.length > 0 && ListUsers.map((item, index) => {
-                        return (
+                    {
+                        isError === true ?
+                            <>
+                                <div>Something wrongs, please try again...</div>
+                            </>
+                            :
+                            <>
+                                {isLoading === true ?
+                                    <><div>Loading data...</div></>
+                                    :
+                                    <>
+                                        {ListUsers && ListUsers.length > 0 && ListUsers.map((item, index) => {
+                                            return (
 
-                            <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{item.email}</td>
-                                <td>{item.username}</td>
-                                <td>
+                                                <tr key={index}>
+                                                    <td>{index + 1}</td>
+                                                    <td>{item.email}</td>
+                                                    <td>{item.username}</td>
+                                                    <td>
 
-                                    <Button
-                                        variant="danger"
-                                        onClick={() => handleDeleteUser(item)}
-                                    >
-                                        Delete
-                                    </Button>
+                                                        <Button
+                                                            variant="danger"
+                                                            onClick={() => handleDeleteUser(item)}
+                                                        >
+                                                            Delete
+                                                        </Button>
 
-                                </td>
-                            </tr>
-                        )
-                    })}
-
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })}
+                                    </>
+                                }
+                            </>
+                    }
                 </tbody>
             </Table>
         </Container>
