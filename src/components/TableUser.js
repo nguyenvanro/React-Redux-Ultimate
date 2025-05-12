@@ -1,29 +1,35 @@
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
-import axios from 'axios';
+// import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAllUsers } from '../action/actions';
 
+const TableUser = (props) => {
 
-const TableUser = () => {
+    // const [ListUsers, setListUsers] = useState();
 
-    const [ListUsers, setListUsers] = useState();
+    const dispath = useDispatch();
+    const ListUsers = useSelector((state) => state.user.ListUsers);
+    console.log('listUsers: ', ListUsers);
 
-    const fetchAllUser = async () => {
-        const res = await axios.get("http://localhost:8080/users/all");
-        const data = res && res.data ? res.data : []
-        console.log("data: ", data);
-        setListUsers(data)
+    // const fetchAllUser = async () => {
+    //     const res = await axios.get("http://localhost:8080/users/all");
+    //     const data = res && res.data ? res.data : []
+    //     console.log("data: ", data);
+    //     setListUsers(data)
 
-    }
+    // }
 
     useEffect(() => {
-        fetchAllUser();
+        // fetchAllUser();
+        dispath(fetchAllUsers())
     }, [])
 
     const handleDeleteUser = (user) => {
         console.log('delete user: ', user);
-        
+
     }
 
     return (
@@ -47,7 +53,7 @@ const TableUser = () => {
                                 <td>{item.email}</td>
                                 <td>{item.username}</td>
                                 <td>
-                                    
+
                                     <Button
                                         variant="danger"
                                         onClick={() => handleDeleteUser(item)}
