@@ -37,10 +37,8 @@ const TableUser = (props) => {
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <div>Loading data...</div>
-                    </tbody>
                 </Table>
+                <div>Loading data...</div>
             </Container>
         )
     }
@@ -95,10 +93,8 @@ const TableUser = (props) => {
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <div>Something wrongs, please try again...</div>
-                    </tbody>
                 </Table>
+                <div>Something wrongs, please try again...</div>
             </Container>
         )
     }
