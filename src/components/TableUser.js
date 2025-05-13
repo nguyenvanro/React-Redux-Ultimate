@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table';
 import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllUsers } from '../action/actions';
+import { fetchAllUsers, deleteUserRedux } from '../action/actions';
 
 const TableUser = (props) => {
 
@@ -21,7 +21,7 @@ const TableUser = (props) => {
 
     const handleDeleteUser = (user) => {
         console.log('delete user: ', user);
-
+        dispath(deleteUserRedux(user.id))
     }
 
     if (isError === false && isLoading === true) {
@@ -61,20 +61,17 @@ const TableUser = (props) => {
                     <tbody>
                         {ListUsers && ListUsers.length > 0 && ListUsers.map((item, index) => {
                             return (
-
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     <td>{item.email}</td>
                                     <td>{item.username}</td>
                                     <td>
-
                                         <Button
                                             variant="danger"
                                             onClick={() => handleDeleteUser(item)}
                                         >
                                             Delete
                                         </Button>
-
                                     </td>
                                 </tr>
                             )
