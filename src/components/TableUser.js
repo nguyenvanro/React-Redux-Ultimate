@@ -24,58 +24,140 @@ const TableUser = (props) => {
 
     }
 
-    return (
-        <Container>
-            <hr />
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Email</th>
-                        <th>Username</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        isError === true ?
-                            <>
-                                <div>Something wrongs, please try again...</div>
-                            </>
-                            :
-                            <>
-                                {isLoading === true ?
-                                    <><div>Loading data...</div></>
-                                    :
-                                    <>
-                                        {ListUsers && ListUsers.length > 0 && ListUsers.map((item, index) => {
-                                            return (
+    if (isError === false && isLoading === true) {
+        return (
+            <Container>
+                <hr />
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <div>Loading data...</div>
+                    </tbody>
+                </Table>
+            </Container>
+        )
+    }
 
-                                                <tr key={index}>
-                                                    <td>{index + 1}</td>
-                                                    <td>{item.email}</td>
-                                                    <td>{item.username}</td>
-                                                    <td>
+    if (isError === false && isLoading === false) {
+        return (
+            <Container>
+                <hr />
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {ListUsers && ListUsers.length > 0 && ListUsers.map((item, index) => {
+                            return (
 
-                                                        <Button
-                                                            variant="danger"
-                                                            onClick={() => handleDeleteUser(item)}
-                                                        >
-                                                            Delete
-                                                        </Button>
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.username}</td>
+                                    <td>
 
-                                                    </td>
-                                                </tr>
-                                            )
-                                        })}
-                                    </>
-                                }
-                            </>
-                    }
-                </tbody>
-            </Table>
-        </Container>
-    )
+                                        <Button
+                                            variant="danger"
+                                            onClick={() => handleDeleteUser(item)}
+                                        >
+                                            Delete
+                                        </Button>
+
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </Table>
+            </Container>
+        )
+    }
+
+    if (isError === true && isLoading === false) {
+        return (
+            <Container>
+                <hr />
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <div>Something wrongs, please try again...</div>
+                    </tbody>
+                </Table>
+            </Container>
+        )
+    }
+
+    // return (
+    //     <Container>
+    //         <hr />
+    //         <Table striped bordered hover>
+    //             <thead>
+    //                 <tr>
+    //                     <th>#</th>
+    //                     <th>Email</th>
+    //                     <th>Username</th>
+    //                     <th>Action</th>
+    //                 </tr>
+    //             </thead>
+    //             <tbody>
+    //                 {
+    //                     isError === true ?
+    //                         <>
+    //                             <div>Something wrongs, please try again...</div>
+    //                         </>
+    //                         :
+    //                         <>
+    //                             {isLoading === true ?
+    //                                 <><div>Loading data...</div></>
+    //                                 :
+    //                                 <>
+    //                                     {ListUsers && ListUsers.length > 0 && ListUsers.map((item, index) => {
+    //                                         return (
+
+    //                                             <tr key={index}>
+    //                                                 <td>{index + 1}</td>
+    //                                                 <td>{item.email}</td>
+    //                                                 <td>{item.username}</td>
+    //                                                 <td>
+
+    //                                                     <Button
+    //                                                         variant="danger"
+    //                                                         onClick={() => handleDeleteUser(item)}
+    //                                                     >
+    //                                                         Delete
+    //                                                     </Button>
+
+    //                                                 </td>
+    //                                             </tr>
+    //                                         )
+    //                                     })}
+    //                                 </>
+    //                             }
+    //                         </>
+    //                 }
+    //             </tbody>
+    //         </Table>
+    //     </Container>
+    // )
 }
 
 export default TableUser;
